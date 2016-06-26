@@ -1,5 +1,6 @@
 import sys
 
+
 def shortestDistance(words, word1, word2):
 	index1, index2, min_len = -1, -1, sys.maxint
 	for i in range(len(words)):
@@ -12,6 +13,7 @@ def shortestDistance(words, word1, word2):
 				min_len = min(min_len, i - index1)
 			index2 = i
 	print min_len
+
 
 if __name__ == '__main__':
 	words = ['practice', 'makes', 'perfect', 'coding', 'makes']

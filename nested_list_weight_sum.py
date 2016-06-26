@@ -1,6 +1,6 @@
-
 def depthSum(nestedList):
 	print  depthSumHelper(nestedList, 1)
+
 
 def depthSumHelper(nestedList, depth):
 	sum = 0
@@ -10,6 +10,7 @@ def depthSumHelper(nestedList, depth):
 		else:
 			sum += depthSumHelper(item, depth+1)
 	return sum
+
 
 if __name__ == '__main__':
 	list = [[1,1], 2, [4, [6]]]

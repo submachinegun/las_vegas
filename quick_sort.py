@@ -1,7 +1,6 @@
-
-
 def quick_sort(array):
 	quick_sort_helper(array, 0, len(array) - 1)
+
 
 def quick_sort_helper(array, l, r):
 	if l < r:
@@ -9,6 +8,7 @@ def quick_sort_helper(array, l, r):
 		print array
 		quick_sort_helper(array, l, p - 1)
 		quick_sort_helper(array, p + 1, r)
+
 
 def partition_lomuto(array, l, r):
 	pivot = array[r]
@@ -19,6 +19,7 @@ def partition_lomuto(array, l, r):
 			i += 1
 	array[i], array[r] = array[r], array[i]
 	return i
+
 
 def partition_hoare(array, l, r):
 	pivot = array[l]
@@ -33,7 +34,6 @@ def partition_hoare(array, l, r):
 		array[i], array[j] = array[j], array[i]
 		i += 1
 		j -= 1
-		
 
 
 if __name__ == '__main__':

@@ -7,5 +7,6 @@ def filp(s):
 			ls[i] = ls[i - 1] = '+'
 	print ret
 
+
 if __name__ == '__main__':
 	filp('++++')
