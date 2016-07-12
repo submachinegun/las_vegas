@@ -38,16 +38,16 @@ class Myclass:
 		head_nodes = filter(lambda x: indegree[x.index] == 0, G.vertices)
 		ret = []
 		for node in tail_red_nodes:
-			print 'tail '+str(node.index)
+			print 'tail ' + str(node.index)
 		for node in head_nodes:
-			print 'head '+str(node.index)
+			print 'head ' + str(node.index)
 		for node in head_nodes:
 			if self.dfs_find_pattern_paths_head(G, node, tail_red_nodes, 0):
 				ret.append(node.index)
 		return ret
 
 	def dfs_find_pattern_paths_head(self, G, node, tail_red_nodes, green_num):
-		if node not in G.edges:  # not in G.edges means leaf node
+		if node not in G.edges:  #  not in G.edges means leaf node
 			if green_num >= 1 and node in tail_red_nodes:
 				return True
 			return False
@@ -65,7 +65,7 @@ class MyclassTest(unittest.TestCase):
 		edges = {v0:[v2], v1:[v2], v2:[v3], v3:[v4, v5]}
 		G = Graph(vertices, edges)
 		mm = Myclass()
-		self.assertTrue( mm.find_pattern_paths_head(G), ['0', '1'])
+		self.assertTrue(mm.find_pattern_paths_head(G), ['0', '1'])
 		v0, v1, v2, v3 = Vertex(0, 'r'), Vertex(1, 'g'), Vertex(2, 'g'), Vertex(3, 'r')
 		v5, v6, v7 = Vertex(5, 'g'), Vertex(6, 'g'), Vertex(7, 'r')
 		vertices2 = [v0, v1, v2, v3, v4, v5, v6, v7]

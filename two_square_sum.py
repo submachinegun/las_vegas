@@ -13,9 +13,9 @@ class Myclass:
 		:tpye n:int
 		rtype:bool
 		"""
-		# square of even: pow(2*k,2) = 4*k^2 = 0(mod 4)
-		# square of odd: pow(2*k+1, 2) = 1(mod 4)
-		# sum of two square: even^2 + even^2 = 0(mod 4), odd^2 + odd^2 = 2(mod 4), even^2 + odd^2 = 1(mod 4) 
+		#  square of even: pow(2*k,2) = 4*k^2 = 0(mod 4)
+		#  square of odd: pow(2*k+1, 2) = 1(mod 4)
+		#  sum of two square: even^2 + even^2 = 0(mod 4), odd^2 + odd^2 = 2(mod 4), even^2 + odd^2 = 1(mod 4) 
 		return n % 4 != 3
 
 	
@@ -26,10 +26,22 @@ class Myclass:
 		"""
 		for i in range(1, int(math.sqrt(n)) + 1):
 			for j in range(1, int(math.sqrt(n)) + 1):
-				if i**2 + j **2 == n:
+				if i ** 2 + j ** 2 == n:
 					return True
 		return False	
-
+	
+	
+	def check_one_pass(self, n):
+		i, j = 1, int(math.sqrt(n) + 1)
+		while i <= j:
+			sum = i ** 2 + j ** 2
+			if sum == n:
+				return True
+			elif sum < n:
+				i += 1
+			else:
+				j -= 1
+		return False
 
 class MyclassTest(unittest.TestCase):
 	def test(self):
@@ -39,7 +51,8 @@ class MyclassTest(unittest.TestCase):
 		self.assertEqual(mm.check_two_loop(18), True)	
 		self.assertEqual(mm.check_two_loop(17), True)
 		self.assertEqual(mm.check_two_loop(19), False)
-
-
+		self.assertEqual(mm.check_one_pass(17), True)
+		self.assertEqual(mm.check_one_pass(18), True)
+		self.assertEqual(mm.check_one_pass(19), False)
 if __name__ == '__main__':
 	unittest.main()
