@@ -9,18 +9,24 @@ class Myclass:
 	(startIndex and endIndex inclusive) with inc.
 	Return the modified array after all k operations were executed.
 	"""
-	def __init__(self, n):
-		self.A = [0] * n
-
-	def _update(self, startIndex, endIndex, inc):
-		startIndex = max(startIndex, 0)
-		endIndex = min(n - 1, endIndex)
-		for i in range(startIndex, endIndex + 1):
-			self.A[i] += inc
 		
-	def update_k(self, ope):
+	def update_k(self, n, ope):
 		"""
 		:type ope:[(startIndex, endIndex, inc)]*k
 		:rtype void
 		"""
+		ret = [0] * n
+		for o in ope:
+			ret[o[0]] += o[2]
+			if o[1] + 1 < n:
+				ret[o[1] + 1] -= o[2]
+		value = 0
+		for i in range( n):
+			value += ret[i] 
+			ret[i] = value
+		return ret
+
+if __name__ == '__main__':
+	m = Myclass()
+	print m.update_k(5, [(1,3,2), (2,4,3), (0,2,-2)])
 		
