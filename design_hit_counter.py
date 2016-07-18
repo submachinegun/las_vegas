@@ -33,5 +33,41 @@ Follow up:
 What if the number of hits per second could be very large? Does your design scale?
 """
 
-class Myclass:
+class Counter(object):
+	queue = []
+	
+	def hit(self, t):
+		self.queue.append(t)
+	
+	def getHits(self, t):
+		while self.queue[0] <= t - 300:
+			del self.queue[0]
+		print len(self.queue)
 
+class CounterII:
+	hit_num = [0] * 300
+	timestamp = [0] * 300
+
+	def hit(self, t):
+		index = t % 300 - 1
+		if self.timestamp[index] == 0 or t == self.timestamp[index]:
+			self.hit_num[index] += 1
+		else:
+			self.hit_num[index] = 1
+		self.timestamp[index] = t
+
+	def getHits(self, t):
+		print sum(self.hit_num[x] for x in range(300) if self.timestamp[x] > t - 300)
+		
+if __name__ == '__main__':
+	c = CounterII()
+	c.hit(1)
+	c.hit(1)
+	c.hit(2)
+	c.hit(3)
+	c.hit(4)
+	c.getHits(300)
+	c.getHits(301)
+	c.hit(304)
+	c.hit(304)
+	c.getHits(306)
