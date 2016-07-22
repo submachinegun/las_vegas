@@ -17,34 +17,29 @@ Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and 
 
 class Myclass:
 	def weight_sum(self, A):
-		layer_sum = [0]
-		self.weight_sum_helper(A, 0, 0, layer_sum, 0)
-		w = len(layer_sum)
-		print layer_sum
+		layer_sum = [0] * len(A)
+		layer = w = 1 + self.weight_sum_helper(A, 0, 0, layer_sum, 0)
+		print layer_sum[:layer]
 		ret = 0
-		for x in layer_sum:
+		for x in layer_sum[:layer]
 			ret += w * x
 			w -= 1
 		return ret
 
 	def weight_sum_helper(self, A, i, pre_sum, layer_sum, layer):
-		print A, i, pre_sum
+		print A, i, layer,pre_sum
 		print
 		if i == len(A):
 			layer_sum[layer] = pre_sum
-			return pre_sum
+			return layer
 		if type(A[i]) is int:
 			self.weight_sum_helper(A, i + 1, pre_sum + A[i], layer_sum, layer)
 		else:	
-			layer_sum.append(0)
-			this_sum = self.weight_sum_helper(A[i], 0, 0, layer_sum, layer + 1)
-			self.weight_sum_helper(A, i + 1, pre_sum + this_sum, layer_sum, layer)
-
+			self.weight_sum_helper(A[i], 0, 0, layer_sum, layer + 1)
+			self.weight_sum_helper(A, i + 1, pre_sum, layer_sum, layer)
+		return layer
 
 if __name__ == '__main__':
 	m = Myclass()
-	A =  [1,[4,[6]]]
-	#A = [1, 2, 3, 4, 5]
-	print m.weight_sum(A)
-
-	
+	A =  [[1,1], 2, [1,1]]
+	print m.weight_sum(A)	
